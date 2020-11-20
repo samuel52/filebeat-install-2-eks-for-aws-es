@@ -1,0 +1,30 @@
+{
+    "policy": {
+        "policy_id": "delete_old",
+        "description": "ISM policy which deletes old filebeat indices after 90 days.",
+        "default_state": "current",
+        "states": [
+            {
+                "name": "current",
+                "actions": [],
+                "transitions": [
+                    {
+                        "state_name": "delete",
+                        "conditions": {
+                            "min_index_age": "90d"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "delete",
+                "actions": [
+                    {
+                        "delete": {}
+                    }
+                ],
+                "transitions": []
+            }
+        ]
+    }
+}
